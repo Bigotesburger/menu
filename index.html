@@ -1,0 +1,1808 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Bigotes | Alitas & Hamburguesas</title>
+  <meta name="description" content="Las mejores alitas, hamburguesas y hot dogs de Cholula. Sabores explosivos con ingredientes premium a precios accesibles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Montserrat:wght@400;600;700&family=Pacifico&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #FF6B00;
+      --secondary: #FFD700;
+      --dark: #1A1A1A;
+      --light: #F8F8F8;
+      --accent: #E63946;
+      --text: #333333;
+      --bg-overlay: rgba(26, 26, 26, 0.85);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 120px; /* Espacio para el header y categorías */
+    }
+
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--dark);
+      color: var(--light);
+      line-height: 1.6;
+      overflow-x: hidden;
+      position: relative;
+      touch-action: manipulation;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1090&q=80') no-repeat center center/cover;
+      opacity: 0.7;
+      z-index: -1;
+    }
+
+    /* Header y Navegación */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      background-color: rgba(26, 26, 26, 0.98);
+      box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+      height: 60px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo img {
+      height: 45px;
+      filter: drop-shadow(0 0 5px rgba(255, 215, 0, 0.7));
+    }
+
+    .logo .b-image {
+      height: 35px;
+      margin-right: 5px;
+    }
+
+    /* Ajustar el margen superior del contenido principal */
+    .hero {
+      margin-top: 70px;
+    }
+
+    /* Eliminamos cualquier transformación o transición en los enlaces */
+    .nav-link {
+      color: var(--light);
+      text-decoration: none;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 30px;
+      font-family: 'Amatic SC', cursive;
+      font-size: 1.4rem;
+    }
+
+    /* Ajustamos el margen superior del contenido */
+    .section:first-of-type {
+      padding-top: 70px;
+    }
+
+    /* Para móviles */
+    @media (max-width: 768px) {
+      .nav-container {
+        height: 50px;
+        padding: 8px 15px;
+      }
+      
+      .logo img {
+        height: 40px;
+      }
+      
+      .logo .b-image {
+        height: 30px;
+      }
+      
+      .hero {
+        margin-top: 50px;
+      }
+      
+      html {
+        scroll-padding-top: 100px; /* Ajuste para móviles */
+      }
+    }
+
+    .nav-link:hover {
+      color: var(--secondary);
+      transform: translateY(-2px);
+    }
+
+    .nav-link.active {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .hamburger {
+      display: none;
+      cursor: pointer;
+      font-size: 1.8rem;
+      color: var(--light);
+      transition: all 0.3s ease;
+    }
+
+    .hamburger:hover {
+      color: var(--secondary);
+    }
+
+    /* Hero Section */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 0 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-content {
+      max-width: 800px;
+      z-index: 1;
+      animation: fadeInUp 1s ease-out;
+    }
+
+    .hero-title {
+      font-family: 'Amatic SC', cursive;
+      font-size: 3.5rem;
+      color: var(--secondary);
+      margin-bottom: 20px;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .hero-title img {
+      height: 150px;
+      filter: drop-shadow(0 0 8px var(--secondary));
+      margin-bottom: 15px;
+      transition: all 0.3s ease;
+    }
+
+    .hero-title img:hover {
+      transform: scale(1.05);
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 25px;
+      color: white;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+    }
+
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 25px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      font-family: 'Amatic SC', cursive;
+      font-size: 1.5rem;
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background-color: var(--primary);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #e05e00;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: white;
+      border: 2px solid white;
+    }
+
+    .btn-secondary:hover {
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-3px);
+    }
+
+    /* Secciones */
+    .section {
+      padding: 100px 15px 60px; /* Aumenté el padding superior para más espacio */
+      position: relative;
+    }
+
+    .section-title {
+      font-family: 'Amatic SC', cursive;
+      font-size: 2.8rem;
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--secondary);
+      position: relative;
+    }
+
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 100px;
+      height: 4px;
+      background: var(--primary);
+      margin: 15px auto;
+      border-radius: 3px;
+    }
+
+    .section-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.1;
+      z-index: -1;
+    }
+
+    /* Menú */
+    .menu {
+      background-color: var(--bg-overlay);
+    }
+
+    .menu-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Submenú de categorías */
+    .category-nav {
+      position: sticky;
+      top: 60px; /* Altura del header */
+      background-color: rgba(26, 26, 26, 0.95);
+      z-index: 999;
+      padding: 15px 5%;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+      display: flex;
+      justify-content: center;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      gap: 15px;
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
+
+    .category-link {
+      padding: 8px 20px;
+      background-color: rgba(255, 255, 255, 0.1);
+      border-radius: 30px;
+      color: var(--light);
+      text-decoration: none;
+      font-size: 1.3rem;
+      transition: all 0.3s ease;
+      font-family: 'Amatic SC', cursive;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .category-link:hover {
+  background-color: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+}
+
+    .menu-section {
+      margin-bottom: 60px; /* Más espacio entre secciones */
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      border-left: 4px solid var(--primary);
+      transition: all 0.3s ease;
+      scroll-margin-top: 120px; /* Espacio para header + categorías */
+    }
+
+    .menu-section:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 2px dashed var(--primary);
+    }
+
+    .section-name {
+      font-family: 'Amatic SC', cursive;
+      font-size: 2.2rem;
+      color: var(--secondary);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+
+    .menu-item {
+      background: rgba(26, 26, 26, 0.7);
+      border-radius: 8px;
+      padding: 15px;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid var(--primary);
+      position: relative;
+    }
+
+    .menu-item:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      background: rgba(26, 26, 26, 0.8);
+    }
+
+    .item-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      align-items: center;
+    }
+
+    .item-name {
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: var(--secondary);
+    }
+
+    .item-price {
+      color: var(--primary);
+      font-weight: 700;
+      font-size: 1rem;
+      background: rgba(255, 107, 0, 0.2);
+      padding: 4px 10px;
+      border-radius: 20px;
+      white-space: nowrap;
+    }
+
+    .item-description {
+      color: #ccc;
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+    }
+
+    .item-options {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    /* Botones de extras */
+    .extras-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .extra-btn {
+      padding: 6px 12px;
+      background-color: rgba(255, 107, 0, 0.2);
+      border: 1px solid var(--primary);
+      border-radius: 20px;
+      color: var(--light);
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      flex-shrink: 0;
+    }
+
+    .extra-btn:hover {
+      background-color: var(--primary);
+      transform: translateY(-2px);
+    }
+
+    .extra-btn.selected {
+      background-color: var(--primary);
+      color: white;
+      font-weight: bold;
+    }
+
+    /* Ubicación */
+    .location {
+      background-color: var(--bg-overlay);
+    }
+
+    .location-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .location-info {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-bottom: 30px;
+      gap: 15px;
+    }
+
+    .info-card {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      padding: 20px;
+      border-radius: 8px;
+      width: 100%;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .info-card:hover {
+      transform: translateY(-3px);
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+    .info-icon {
+      font-size: 2.2rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .info-title {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: var(--secondary);
+    }
+
+    .info-card p {
+      font-size: 0.95rem;
+    }
+
+    .map-container {
+      width: 100%;
+      height: 300px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Footer */
+    footer {
+      background-color: #000;
+      padding: 20px;
+      text-align: center;
+      color: var(--light);
+      font-family: 'Montserrat', sans-serif;
+      font-size: 0.9rem;
+    }
+
+    .social-links {
+      margin-top: 15px;
+    }
+
+    .social-links a {
+      color: var(--secondary);
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .social-links a:hover {
+      color: var(--primary);
+      transform: translateY(-3px);
+    }
+
+    /* WhatsApp flotante */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      width: 60px;
+      height: 60px;
+      background-color: #25D366;
+      color: white;
+      border-radius: 50%;
+      text-align: center;
+      font-size: 30px;
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.1);
+      background-color: #128C7E;
+    }
+
+    @keyframes pulse {
+      0% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+      }
+      70% {
+        box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+      }
+      100% {
+        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+      }
+    }
+
+    /* Animaciones */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Selector de cantidad */
+    .quantity-selector {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-top: 15px;
+      gap: 6px;
+    }
+
+    .quantity-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+    }
+
+    .quantity-btn:hover {
+      background-color: #e05e00;
+      transform: scale(1.1);
+    }
+
+    .quantity-input {
+      width: 40px;
+      height: 30px;
+      text-align: center;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background-color: rgba(255, 255, 255, 0.05);
+      color: white;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+
+    /* Botón de completar orden */
+    .complete-order-btn {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 99;
+      padding: 15px 25px;
+      background-color: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50px;
+      font-weight: bold;
+      font-size: 1.5rem;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease;
+      display: none;
+      font-family: 'Amatic SC', cursive;
+      width: 90%;
+      max-width: 300px;
+      text-align: center;
+    }
+
+    .complete-order-btn:hover {
+      background-color: #e05e00;
+      transform: translateX(-50%) translateY(-3px);
+      box-shadow: 0 8px 20px rgba(255, 107, 0, 0.4);
+    }
+
+    .complete-order-btn.show {
+      display: block;
+      animation: fadeInUp 0.5s ease-out;
+    }
+
+    /* Modal de confirmación */
+    .order-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .order-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .modal-content {
+      background-color: var(--dark);
+      padding: 25px;
+      border-radius: 12px;
+      width: 95%;
+      max-width: 400px;
+      max-height: 80vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      position: relative;
+      border: 2px solid var(--primary);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      background: none;
+      border: none;
+      color: var(--light);
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal-close:hover {
+      color: var(--primary);
+      transform: rotate(90deg);
+    }
+
+    .modal-title {
+      font-family: 'Amatic SC', cursive;
+      font-size: 2.2rem;
+      color: var(--secondary);
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .order-summary {
+      margin-bottom: 25px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(255, 255, 255, 0.1);
+      font-size: 0.95rem;
+    }
+
+    .order-item-name {
+      font-weight: 600;
+    }
+
+    .order-item-price {
+      color: var(--primary);
+      font-weight: bold;
+    }
+
+    .order-total {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      padding-top: 10px;
+      border-top: 2px solid var(--primary);
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .modal-whatsapp-btn {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      background-color: #25D366;
+      color: white;
+      text-align: center;
+      border-radius: 50px;
+      font-weight: bold;
+      text-decoration: none;
+      margin-top: 20px;
+      transition: all 0.3s ease;
+      font-size: 1.1rem;
+    }
+
+    .modal-whatsapp-btn:hover {
+      background-color: #128C7E;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+    }
+
+    /* Responsive */
+    @media (min-width: 576px) {
+      .hero-title {
+        font-size: 4rem;
+      }
+      
+      .hero-title img {
+        height: 180px;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.3rem;
+      }
+      
+      .section {
+        padding: 110px 20px 70px;
+      }
+      
+      .section-title {
+        font-size: 3rem;
+      }
+      
+      .menu-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      }
+      
+      .location-info {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+      
+      .info-card {
+        flex: 1 1 200px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .nav-menu {
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        flex-direction: row;
+        display: flex;
+      }
+      
+      .hamburger {
+        display: none;
+      }
+      
+      .hero-title {
+        font-size: 4.5rem;
+      }
+      
+      .hero-title img {
+        height: 200px;
+      }
+      
+      .hero-subtitle {
+        font-size: 1.5rem;
+      }
+      
+      .section {
+        padding: 120px 5% 80px;
+      }
+      
+      .section-title {
+        font-size: 3.5rem;
+      }
+      
+      .category-nav {
+        top: 60px;
+        padding: 15px 5%;
+        justify-content: center;
+      }
+      
+      .complete-order-btn {
+        width: auto;
+        padding: 15px 30px;
+      }
+      
+      .whatsapp-float {
+        bottom: 30px;
+        right: 30px;
+        width: 70px;
+        height: 70px;
+        font-size: 35px;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .hero-title {
+        font-size: 5rem;
+      }
+      
+      .hero-title img {
+        height: 220px;
+      }
+      
+      .section {
+        padding: 140px 5% 100px;
+      }
+      
+      .location-info {
+        flex-wrap: nowrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header id="header">
+    <div class="nav-container">
+      <div class="logo">
+        <img src="b.png" alt="Bigotes Logo" class="b-image">
+        <img src="logogrand.png" alt="Bigotes Logo">
+      </div>
+      
+      <div class="hamburger" id="hamburger">
+        <i class="fas fa-bars"></i>
+      </div>
+      
+      <nav class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-link active">Inicio</a>
+        <a href="#menu" class="nav-link">Menú</a>
+        <a href="#location" class="nav-link">Ubicación</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1 class="hero-title">
+        <img src="logogrand.png" alt="Logo Bigotes" />
+      </h1>
+      <p class="hero-subtitle">Las alitas más jugosas, hamburguesas más explosivas y hot dogs más irresistibles de Cholula</p>
+      <div class="hero-buttons">
+        <a href="#menu" class="btn btn-primary">Ver Menú</a>
+        <a href="#location" class="btn btn-secondary">Visítanos</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Menú -->
+  <section class="section menu" id="menu">
+    <div class="section-bg" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1098&q=80');"></div>
+    <h2 class="section-title">Nuestro Menú</h2>
+    
+    <div class="menu-container">
+      <!-- Submenú de categorías -->
+      <div class="category-nav" id="categoryNav">
+        <a href="#hamburguesas" class="category-link">Hamburguesas</a>
+        <a href="#hotdogs" class="category-link">Hot Dogs</a>
+        <a href="#bigopapas" class="category-link">Bigo Papas</a>
+        <a href="#snacks" class="category-link">Snacks</a>
+        <a href="#malteadas" class="category-link">Malteadas/Bebidas</a>
+        <a href="#promos" class="category-link">Promociones</a>
+        <a href="#trios" class="category-link">Combos Bigo Trio</a>
+      </div>
+      
+      <!-- Sección Hamburguesas -->
+      <div class="menu-section" id="hamburguesas">
+        <div class="section-header">
+          <h3 class="section-name">Hamburguesas</h3>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Hamburguesa c/ Queso</span>
+              <span class="item-price">$75</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Hamburguesa c/ Queso" data-price="75">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Hamburguesa c/ Queso" data-price="75">
+              <button class="quantity-btn plus" data-item="Hamburguesa c/ Queso" data-price="75">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Hawaiana</span>
+              <span class="item-price">$85</span>
+            </div>
+            <p class="item-description">Con piña, jamón y queso</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Hawaiana" data-price="85">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Hawaiana" data-price="85">
+              <button class="quantity-btn plus" data-item="Hawaiana" data-price="85">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Especial (Tocino)</span>
+              <span class="item-price">$85</span>
+            </div>
+            <p class="item-description">Con tocino y queso</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Especial (Tocino)" data-price="85">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Especial (Tocino)" data-price="85">
+              <button class="quantity-btn plus" data-item="Especial (Tocino)" data-price="85">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Farmer (Huevo)</span>
+              <span class="item-price">$85</span>
+            </div>
+            <p class="item-description">Con huevo</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Farmer (Huevo)" data-price="85">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Farmer (Huevo)" data-price="85">
+              <button class="quantity-btn plus" data-item="Farmer (Huevo)" data-price="85">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Onion King</span>
+              <span class="item-price">$85</span>
+            </div>
+            <p class="item-description">Con queso y aros de cebolla</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Onion King" data-price="85">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Onion King" data-price="85">
+              <button class="quantity-btn plus" data-item="Onion King" data-price="85">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Choriqueso</span>
+              <span class="item-price">$85</span>
+            </div>
+            <p class="item-description">Con chorizo y queso</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Choriqueso" data-price="85">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Choriqueso" data-price="85">
+              <button class="quantity-btn plus" data-item="Choriqueso" data-price="85">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">3 Quesos</span>
+              <span class="item-price">$99</span>
+            </div>
+            <p class="item-description">Manchego, Amarillo, Quesillo</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="3 Quesos" data-price="99">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="3 Quesos" data-price="99">
+              <button class="quantity-btn plus" data-item="3 Quesos" data-price="99">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Mostachona</span>
+              <span class="item-price">$99</span>
+            </div>
+            <p class="item-description">Con queso, salchicha, jamón y tocino</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Mostachona" data-price="99">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Mostachona" data-price="99">
+              <button class="quantity-btn plus" data-item="Mostachona" data-price="99">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-description"><strong>Extras:</strong></div>
+            <div class="extras-container">
+              <button class="extra-btn" data-item="Extra Carne" data-price="30">Carne $30</button>
+              <button class="extra-btn" data-item="Extra Pollo" data-price="30">Pollo $30</button>
+              <button class="extra-btn" data-item="Extra Ingrediente" data-price="15">Ingrediente $15</button>
+            </div>
+            <div class="item-description"><strong>Aderezos ($10 c/u):</strong></div>
+            <div class="extras-container">
+              <button class="extra-btn" data-item="Aderezo BBQ" data-price="10">BBQ</button>
+              <button class="extra-btn" data-item="Aderezo Hot Buffalo" data-price="10">Hot Buffalo</button>
+              <button class="extra-btn" data-item="Aderezo Mango Habanero" data-price="10">Mango Habanero</button>
+              <button class="extra-btn" data-item="Aderezo Chipo Mayo" data-price="10">Chipo Mayo</button>
+              <button class="extra-btn" data-item="Aderezo Jalapeño Mayo" data-price="10">Jalapeño Mayo</button>
+              <button class="extra-btn" data-item="Aderezo Crema de Ajo" data-price="10">Crema de Ajo</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sección Hot Dogs -->
+      <div class="menu-section" id="hotdogs">
+        <div class="section-header">
+          <h3 class="section-name">Hot Dogs</h3>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Con Queso</span>
+              <span class="item-price">$49</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Hot Dog Con Queso" data-price="49">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Hot Dog Con Queso" data-price="49">
+              <button class="quantity-btn plus" data-item="Hot Dog Con Queso" data-price="49">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Hawaiano</span>
+              <span class="item-price">$55</span>
+            </div>
+            <p class="item-description">Con queso, piña y jamón</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Hot Dog Hawaiano" data-price="55">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Hot Dog Hawaiano" data-price="55">
+              <button class="quantity-btn plus" data-item="Hot Dog Hawaiano" data-price="55">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Especial</span>
+              <span class="item-price">$55</span>
+            </div>
+            <p class="item-description">Con tocino y queso</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Hot Dog Especial" data-price="55">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Hot Dog Especial" data-price="55">
+              <button class="quantity-btn plus" data-item="Hot Dog Especial" data-price="55">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Choriqueso</span>
+              <span class="item-price">$65</span>
+            </div>
+            <p class="item-description">Con chorizo y queso</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Hot Dog Choriqueso" data-price="65">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Hot Dog Choriqueso" data-price="65">
+              <button class="quantity-btn plus" data-item="Hot Dog Choriqueso" data-price="65">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">3 Quesos</span>
+              <span class="item-price">$65</span>
+            </div>
+            <p class="item-description">Manchego, Amarillo, Quesillo</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Hot Dog 3 Quesos" data-price="65">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Hot Dog 3 Quesos" data-price="65">
+              <button class="quantity-btn plus" data-item="Hot Dog 3 Quesos" data-price="65">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sección Bigo Papas -->
+      <div class="menu-section" id="bigopapas">
+        <div class="section-header">
+          <h3 class="section-name">Bigo Papas</h3>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Francesas</span>
+              <span class="item-price">$39</span>
+            </div>
+            <p class="item-description">200 gramos</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Papas Francesas" data-price="39">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Papas Francesas" data-price="39">
+              <button class="quantity-btn plus" data-item="Papas Francesas" data-price="39">+</button>
+            </div>
+          </div>
+          <!-- item x -->
+          <div class="menu-item">
+  <div class="item-header">
+    <span class="item-name">Nueva Hamburguesa</span>
+    <span class="item-price">$99</span>
+  </div>
+  <p class="item-description">Descripción del nuevo producto (opcional)</p>
+  <div class="quantity-selector">
+    <button class="quantity-btn minus" data-item="Nueva Hamburguesa" data-price="99">-</button>
+    <input type="number" class="quantity-input" value="0" min="0" data-item="Nueva Hamburguesa" data-price="99">
+    <button class="quantity-btn plus" data-item="Nueva Hamburguesa" data-price="99">+</button>
+  </div>
+</div>
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Salchipapas</span>
+              <span class="item-price">$45</span>
+            </div>
+            <p class="item-description">Con salchicha</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Salchipapas" data-price="45">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Salchipapas" data-price="45">
+              <button class="quantity-btn plus" data-item="Salchipapas" data-price="45">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Tocipapas</span>
+              <span class="item-price">$45</span>
+            </div>
+            <p class="item-description">Con tocino</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Tocipapas" data-price="45">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Tocipapas" data-price="45">
+              <button class="quantity-btn plus" data-item="Tocipapas" data-price="45">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Choripapas</span>
+              <span class="item-price">$45</span>
+            </div>
+            <p class="item-description">Con chorizo</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Choripapas" data-price="45">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Choripapas" data-price="45">
+              <button class="quantity-btn plus" data-item="Choripapas" data-price="45">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Fuego</span>
+              <span class="item-price">$45</span>
+            </div>
+            <p class="item-description">Salsa hot y jalapeño</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Papas Fuego" data-price="45">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Papas Fuego" data-price="45">
+              <button class="quantity-btn plus" data-item="Papas Fuego" data-price="45">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-description"><strong>Extra:</strong></div>
+            <div class="extras-container">
+              <button class="extra-btn" data-item="Queso extra" data-price="10">Queso extra +$10</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sección Snacks -->
+      <div class="menu-section" id="snacks">
+        <div class="section-header">
+          <h3 class="section-name">Snacks</h3>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Papas en Gajo</span>
+              <span class="item-price">$45</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Papas en Gajo" data-price="45">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Papas en Gajo" data-price="45">
+              <button class="quantity-btn plus" data-item="Papas en Gajo" data-price="45">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Aros de Cebolla</span>
+              <span class="item-price">$45</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Aros de Cebolla" data-price="45">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Aros de Cebolla" data-price="45">
+              <button class="quantity-btn plus" data-item="Aros de Cebolla" data-price="45">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Alitas</span>
+              <span class="item-price">$79</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Alitas" data-price="79">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Alitas" data-price="79">
+              <button class="quantity-btn plus" data-item="Alitas" data-price="79">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sección Malteadas/Bebidas -->
+      <div class="menu-section" id="malteadas">
+        <div class="section-header">
+          <h3 class="section-name">Malteadas/Bebidas</h3>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Fresa</span>
+              <span class="item-price">$55</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Malteada Fresa" data-price="55">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Malteada Fresa" data-price="55">
+              <button class="quantity-btn plus" data-item="Malteada Fresa" data-price="55">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Vainilla</span>
+              <span class="item-price">$55</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Malteada Vainilla" data-price="55">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Malteada Vainilla" data-price="55">
+              <button class="quantity-btn plus" data-item="Malteada Vainilla" data-price="55">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Nutella</span>
+              <span class="item-price">$70</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Malteada Nutella" data-price="70">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Malteada Nutella" data-price="70">
+              <button class="quantity-btn plus" data-item="Malteada Nutella" data-price="70">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Chocofresa</span>
+              <span class="item-price">$70</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Malteada Chocofresa" data-price="70">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Malteada Chocofresa" data-price="70">
+              <button class="quantity-btn plus" data-item="Malteada Chocofresa" data-price="70">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Mazapán</span>
+              <span class="item-price">$60</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Malteada Mazapán" data-price="60">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Malteada Mazapán" data-price="60">
+              <button class="quantity-btn plus" data-item="Malteada Mazapán" data-price="60">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Refresco</span>
+              <span class="item-price">$30</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Refresco" data-price="30">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Refresco" data-price="30">
+              <button class="quantity-btn plus" data-item="Refresco" data-price="30">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Agua del día</span>
+              <span class="item-price">$25</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Agua del día" data-price="25">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Agua del día" data-price="25">
+              <button class="quantity-btn plus" data-item="Agua del día" data-price="25">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Boing</span>
+              <span class="item-price">$30</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Boing" data-price="30">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Boing" data-price="30">
+              <button class="quantity-btn plus" data-item="Boing" data-price="30">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Agua Natural</span>
+              <span class="item-price">$20</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Agua Natural" data-price="20">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Agua Natural" data-price="20">
+              <button class="quantity-btn plus" data-item="Agua Natural" data-price="20">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sección Promociones -->
+      <div class="menu-section" id="promos">
+        <div class="section-header">
+          <h3 class="section-name">Promociones</h3>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Junior Burger</span>
+              <span class="item-price">$49</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Junior Burger" data-price="49">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Junior Burger" data-price="49">
+              <button class="quantity-btn plus" data-item="Junior Burger" data-price="49">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Doble c/ Queso Jr</span>
+              <span class="item-price">$75</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Doble c/ Queso Jr" data-price="75">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Doble c/ Queso Jr" data-price="75">
+              <button class="quantity-btn plus" data-item="Doble c/ Queso Jr" data-price="75">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Triple c/ Queso Jr</span>
+              <span class="item-price">$99</span>
+            </div>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Triple c/ Queso Jr" data-price="99">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Triple c/ Queso Jr" data-price="99">
+              <button class="quantity-btn plus" data-item="Triple c/ Queso Jr" data-price="99">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sección Bigo Trio -->
+      <div class="menu-section" id="trios">
+        <div class="section-header">
+          <h3 class="section-name">Combos Bigo Trio</h3>
+        </div>
+        <div class="menu-grid">
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Combo 1: Papas + Agua de sabor</span>
+              <span class="item-price">$35</span>
+            </div>
+            <p class="item-description">Agrega este combo a tu hamburguesa o hot dog</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Combo 1: Papas + Agua de sabor" data-price="35">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Combo 1: Papas + Agua de sabor" data-price="35">
+              <button class="quantity-btn plus" data-item="Combo 1: Papas + Agua de sabor" data-price="35">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Combo 2: Papas Francesas + Refresco</span>
+              <span class="item-price">$40</span>
+            </div>
+            <p class="item-description">Agrega este combo a tu hamburguesa o hot dog</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Combo 2: Papas Francesas + Refresco" data-price="40">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Combo 2: Papas Francesas + Refresco" data-price="40">
+              <button class="quantity-btn plus" data-item="Combo 2: Papas Francesas + Refresco" data-price="40">+</button>
+            </div>
+          </div>
+          
+          <div class="menu-item">
+            <div class="item-header">
+              <span class="item-name">Combo 3: Papas + Malteada</span>
+              <span class="item-price">$70</span>
+            </div>
+            <p class="item-description">Agrega este combo a tu hamburguesa o hot dog</p>
+            <div class="quantity-selector">
+              <button class="quantity-btn minus" data-item="Combo 3: Papas + Malteada" data-price="70">-</button>
+              <input type="number" class="quantity-input" value="0" min="0" data-item="Combo 3: Papas + Malteada" data-price="70">
+              <button class="quantity-btn plus" data-item="Combo 3: Papas + Malteada" data-price="70">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ubicación -->
+  <section class="section location" id="location">
+    <div class="section-bg" style="background-image: url('https://images.unsplash.com/photo-1544148103-0773bf10d330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80');"></div>
+    <h2 class="section-title">Visítanos</h2>
+    
+    <div class="location-container">
+      <div class="location-info">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h3 class="info-title">Dirección</h3>
+          <p>Calz. del Ciprés 3, Barrio Real, 72810 San Andrés Cholula, Pue.</p>
+        </div>
+        
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <h3 class="info-title">Horario</h3>
+          <p>Lunes a Viernes: 12:00 PM - 4:30 PM / 6:00 PM - 10:00 PM</p>
+          <p>Sábado y Domingo: 12:00 PM - 10:00 PM</p>
+        </div>
+        
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-phone-alt"></i>
+          </div>
+          <h3 class="info-title">Teléfono</h3>
+          <p>55 5402 9560</p>
+          <p>WhatsApp disponible</p>
+        </div>
+      </div>
+      
+      <div class="map-container">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3771.27432738598!2d-98.28018572497321!3d19.051672582147855!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cfc64d0c01b16d%3A0xb3bf4a77a40d4fd6!2sBigotes%20Burger%20House!5e0!3m2!1ses-419!2smx!4v1747764553299!5m2!1ses-419!2smx" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <!-- Footer -->
+<footer>
+  <p>Todos los derechos reservados &copy; 2023 Bigotes Burger House</p>
+</footer>
+
+  <!-- WhatsApp flotante -->
+  <a href="https://wa.me/5215554029560" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+  <!-- Botón de completar orden -->
+  <button class="complete-order-btn" id="completeOrderBtn">Completar Orden</button>
+
+  <!-- Modal de confirmación de orden -->
+  <div class="order-modal" id="orderModal">
+    <div class="modal-content">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <h3 class="modal-title">Tu Orden</h3>
+      <div class="order-summary" id="orderSummary">
+        <!-- Los elementos de la orden se agregarán aquí dinámicamente -->
+      </div>
+      <div class="order-total">
+        <span>Total:</span>
+        <span id="orderTotal">$0</span>
+      </div>
+      <a href="#" class="modal-whatsapp-btn" id="modalWhatsappBtn" target="_blank">
+        <i class="fab fa-whatsapp"></i> Pedir por WhatsApp
+      </a>
+    </div>
+  </div>
+
+  <!-- Script -->
+  <script>
+    // Menú móvil (se mantiene igual)
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('navMenu');
+    
+    hamburger.addEventListener('click', () => {
+      navMenu.classList.toggle('active');
+      hamburger.classList.toggle('fa-times');
+    });
+    
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('fa-times');
+      });
+    });
+
+    // Sistema de pedidos (se mantiene igual)
+    const completeOrderBtn = document.getElementById('completeOrderBtn');
+    const orderModal = document.getElementById('orderModal');
+    const modalClose = document.getElementById('modalClose');
+    const orderSummary = document.getElementById('orderSummary');
+    const orderTotal = document.getElementById('orderTotal');
+    const modalWhatsappBtn = document.getElementById('modalWhatsappBtn');
+    const whatsappNumber = '5215554029560';
+
+    let selectedItems = [];
+
+    // Manejar los botones de cantidad
+    document.querySelectorAll('.quantity-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const input = this.parentElement.querySelector('.quantity-input');
+        let value = parseInt(input.value);
+        
+        if (this.classList.contains('plus')) {
+          value++;
+        } else if (this.classList.contains('minus') && value > 0) {
+          value--;
+        }
+        
+        input.value = value;
+        updateOrder();
+      });
+    });
+
+    // Manejar cambios directos en el input
+    document.querySelectorAll('.quantity-input').forEach(input => {
+      input.addEventListener('change', function() {
+        if (this.value < 0) this.value = 0;
+        updateOrder();
+      });
+    });
+
+    // Manejar los botones de extras
+    document.querySelectorAll('.extra-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        this.classList.toggle('selected');
+        updateOrder();
+      });
+    });
+
+    // Actualizar la orden
+    function updateOrder() {
+      selectedItems = [];
+      let total = 0;
+      
+      // Obtener todos los inputs con cantidad > 0
+      document.querySelectorAll('.quantity-input').forEach(input => {
+        const quantity = parseInt(input.value);
+        if (quantity > 0) {
+          const name = input.getAttribute('data-item');
+          const price = parseInt(input.getAttribute('data-price'));
+          
+          selectedItems.push({ 
+            name, 
+            price,
+            quantity,
+            subtotal: price * quantity
+          });
+          total += price * quantity;
+        }
+      });
+      
+      // Obtener todos los extras seleccionados
+      document.querySelectorAll('.extra-btn.selected').forEach(btn => {
+        const name = btn.getAttribute('data-item');
+        const price = parseInt(btn.getAttribute('data-price'));
+        
+        selectedItems.push({
+          name,
+          price,
+          quantity: 1,
+          subtotal: price
+        });
+        total += price;
+      });
+      
+      // Mostrar u ocultar el botón de completar orden
+      if (selectedItems.length > 0) {
+        completeOrderBtn.classList.add('show');
+      } else {
+        completeOrderBtn.classList.remove('show');
+      }
+    }
+
+    // Mostrar el modal al hacer clic en completar orden
+    completeOrderBtn.addEventListener('click', () => {
+      if (selectedItems.length === 0) return;
+      
+      // Limpiar el resumen anterior
+      orderSummary.innerHTML = '';
+      let total = 0;
+      
+      // Agregar cada item al resumen
+      selectedItems.forEach(item => {
+        const orderItem = document.createElement('div');
+        orderItem.className = 'order-item';
+        orderItem.innerHTML = `
+          <span class="order-item-name">${item.name} ${item.quantity > 1 ? `(${item.quantity})` : ''}</span>
+          <span class="order-item-price">$${item.subtotal}</span>
+        `;
+        orderSummary.appendChild(orderItem);
+        total += item.subtotal;
+      });
+      
+      // Actualizar el total
+      orderTotal.textContent = `$${total}`;
+      
+      // Generar el mensaje de WhatsApp
+      const message = generateWhatsAppMessage();
+      modalWhatsappBtn.href = `https://wa.me/${whatsappNumber}?text=${encodeURIComponent(message)}`;
+      
+      // Mostrar el modal
+      orderModal.classList.add('active');
+    });
+
+    // Cerrar el modal
+    modalClose.addEventListener('click', () => {
+      orderModal.classList.remove('active');
+    });
+
+    // Generar el mensaje para WhatsApp
+    function generateWhatsAppMessage() {
+      let message = '¡Hola Bigotes Burger House! Quiero pedir:\n\n';
+      
+      selectedItems.forEach(item => {
+        message += `- ${item.quantity > 1 ? `${item.quantity}x ` : ''}${item.name} - $${item.subtotal}\n`;
+      });
+      
+      const total = selectedItems.reduce((sum, item) => sum + item.subtotal, 0);
+      message += `\nTotal: $${total}\n\n¡Gracias!`;
+      
+      return message;
+    }
+
+    // Cerrar modal al hacer clic fuera del contenido
+    orderModal.addEventListener('click', (e) => {
+      if (e.target === orderModal) {
+        orderModal.classList.remove('active');
+      }
+    });
+
+     /********************************************************
+     * CORRECCIÓN PRINCIPAL: AJUSTE DE SCROLL PARA CATEGORÍAS
+     ********************************************************/
+    
+    // Smooth scroll para categorías - Versión corregida
+    document.querySelectorAll('.category-link').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        
+        if (targetElement) {
+          // Calculamos la posición exacta
+          const header = document.querySelector('header');
+          const categoryNav = document.querySelector('.category-nav');
+          
+          // Alturas importantes
+          const headerHeight = header.offsetHeight;
+          const navHeight = categoryNav.offsetHeight;
+          
+          // Posición del elemento destino
+          const elementPosition = targetElement.getBoundingClientRect().top;
+          
+          // Scroll actual
+          const currentScroll = window.pageYOffset;
+          
+          // Calculamos la posición final (ajustado para que quede perfecto)
+          const targetPosition = elementPosition + currentScroll - headerHeight - navHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          });
+
+          // Actualizamos la categoría activa
+          document.querySelectorAll('.category-link').forEach(btn => {
+            btn.classList.remove('active');
+          });
+          this.classList.add('active');
+        }
+      });
+    });
+
+    // Actualizar categoría activa al hacer scroll (versión mejorada)
+    window.addEventListener('scroll', function() {
+      const sections = document.querySelectorAll('.menu-section');
+      const scrollPosition = window.scrollY + 150; // Pequeño offset
+      
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        const sectionId = section.getAttribute('id');
+        const headerHeight = document.querySelector('header').offsetHeight;
+        const navHeight = document.querySelector('.category-nav').offsetHeight;
+        
+        // Punto de activación (ajustado)
+        const activationPoint = sectionTop - headerHeight - navHeight - 30;
+        
+        if (scrollPosition >= activationPoint && 
+            scrollPosition < activationPoint + sectionHeight + 100) {
+          document.querySelectorAll('.category-link').forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${sectionId}`) {
+              link.classList.add('active');
+            }
+          });
+        }
+      });
+    });
+
+    // Activar primera categoría al cargar
+    document.addEventListener('DOMContentLoaded', function() {
+      if (window.location.hash === '#menu') {
+        const firstLink = document.querySelector('.category-link');
+        if (firstLink) firstLink.classList.add('active');
+      }
+    });
+  </script>
+</body>
+</html>
